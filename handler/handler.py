@@ -1,8 +1,9 @@
 __author__ = 'hzz'
 
 import tornado.web
+import tornado.gen
 
-
+import config
 class BaseHandler(tornado.web.RequestHandler):
     @property
     def db(self):
@@ -10,11 +11,8 @@ class BaseHandler(tornado.web.RequestHandler):
 
 
 class HomeHandler(BaseHandler):
-    @tornado.web.asynchronous
-    @tornado.gen.engine
     def get(self):
-        client = tornado.httpclient.AsyncHTTPClient()
-        musics = yield tornado.gen.Task(self.db.query("SELECT * FROM musics"))
+        musics = self.db[config.TB_MUSIC].find()
         self.render("home.html", musics=musics)
 
 

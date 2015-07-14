@@ -1,22 +1,36 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Tornado Facebook Stream Demo</title>
-    <link rel="stylesheet" href="{{ static_url("facebook.css") }}" type="text/css"/>
-  </head>
-  <body>
-    <div id="body">
-      <div style="float:right">
-        <b>{{ escape(current_user["name"]) }}</b> -
-        <a href="/auth/logout">{{ _("Sign out") }}</a>
-      </div>
-      <div style="margin-bottom:1em"><a href="/">{{ _("Refresh stream") }}</a></div>
-      <div id="music">
-        {% for music in musics %}
-          {{ modules.MusicItem(music) }}
-        {% end %}
-      </div>
+{% extends "base.html" %}
+{% block title %}
+
+{% end %}
+{% block body %}
+<div class="panel panel-default" style="width: 50%;margin: 0 auto;text-align:center;">
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+        <p>
+            枪顶后脑勺，该摇还得摇!
+        </p>
     </div>
-  </body>
-</html>
+    <div class="panel-body">
+        <p>
+            横幅.
+        </p>
+    </div>
+
+    <!-- Table -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>音乐</th>
+            <th>时长</th>
+            <th>人气</th>
+            <th>下载</th>
+        </tr>
+        </thead>
+        {% for music in musics %}
+        {{ modules.MusicItem(music) }}
+        {% end %}
+    </table>
+</div>
+
+{% end %}
