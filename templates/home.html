@@ -3,6 +3,11 @@
 
 {% end %}
 {% block body %}
+{% autoescape None %}
+
+<audio id="myaudio">
+    <source src="">
+</audio>
 <div class="panel panel-default" style="width: 50%;margin: 0 auto;text-align:center;">
     <!-- Default panel contents -->
     <div class="panel-heading">
@@ -20,11 +25,11 @@
     <table class="table">
         <thead>
         <tr>
-            <th>#</th>
             <th>音乐</th>
             <th>时长</th>
             <th>人气</th>
             <th>下载</th>
+            <th></th>
         </tr>
         </thead>
         {% for music in musics %}

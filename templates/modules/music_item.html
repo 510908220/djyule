@@ -1,7 +1,8 @@
 <tr>
-    <th></th>
-    <th></th>
-    <th>时长</th>
-    <th>人气</th>
-    <th>下载</th>
+    <td style="text-align:left">{{ music_item['name']}}</td>
+    <td>{{ music_item['time']}}</td>
+    <td>{{ music_item['popularity']}}</td>
+    <td><a href="{{ music_item['download_url']}}" download=""><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a></td>
+    <td> <a class="btn btn-default" onclick="play('{{ music_item['download_url']}}')" role="button">play</a></td>
+
 </tr>

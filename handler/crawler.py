@@ -12,8 +12,7 @@ import config
 def _get(url):
 	response = requests.get(url)
 	if response.status_code == 200:
-		# response.encoding = "gb2312"
-		return response.content
+		return response.content.decode("gbk", "ignore")
 	return ""
 
 
@@ -44,7 +43,6 @@ def process_encode(func):
 		result = func(*args, **kw)
 		result = result.encode("gbk", 'ignore')
 		return result.decode("gbk")
-
 	return wrapper
 
 
@@ -55,34 +53,29 @@ class MusicPage(object):
 		self.soup = BeautifulSoup(self.html)
 
 	@property
-	@process_encode
 	def song_url(self):
 		return self.song_url_
 
 	@property
-	@process_encode
 	def name(self):
 		title = self.soup.title.string
 		if not title:
 			title = ""
-		return title
+		return title[3:]
 
 	@property
-	@process_encode
 	def time(self):
 		div_list = self.soup.find('div', attrs={"class": "downList"})
 		item_li = div_list.find_all("li")[0]
-		return item_li.text
+		return item_li.text[3:]
 
 	@property
-	@process_encode
 	def popularity(self):
 		div_list = self.soup.find('div', attrs={"class": "downList"})
 		item_li = div_list.find_all("li")[1]
-		return item_li.text
+		return item_li.text[3:]
 
 	@property
-	@process_encode
 	def download_url(self):
 		div_player = self.soup.find('div', attrs={"class": "playerDJ"})
 		text = div_player.text
