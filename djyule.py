@@ -14,13 +14,13 @@ from handler import config
 
 from tornado.options import define, options
 
-define("port", default=8888, help="run on the given port", type=int)
+define("port", default=9999, help="run on the given port", type=int)
 
 
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
-            (r"/", handler.HomeHandler),
+            (r"/(.*?)", handler.HomeHandler),
         ]
         settings = dict(
             blog_title=u"Dj Music",

@@ -11,9 +11,12 @@ class BaseHandler(tornado.web.RequestHandler):
 
 
 class HomeHandler(BaseHandler):
-    def get(self):
+    def get(self, page_id):
         musics = self.db[config.TB_MUSIC].find()
-        self.render("home.html", musics=musics)
+
+        if not page_id:
+            page_id = 1
+        self.render("home.html", musics=musics, page_id = page_id, max_page = 50)
 
 
 class LogHandler(BaseHandler):

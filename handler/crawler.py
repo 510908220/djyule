@@ -122,5 +122,5 @@ class MusicCrawler(object):
 
 if __name__ == "__main__":
 	process = MusicCrawler()
-	# process.daemon = True  # 守护进程
+	process.daemon = True  # 守护进程
 	process.run()

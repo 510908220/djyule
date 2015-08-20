@@ -17,6 +17,12 @@
     <link href="{{ static_url('css/dashboard.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <script src="{{static_url('js/jquery-1.8.3.min.js')}}"></script>
+    <!-- jqPagination styles -->
+     <link href="{{ static_url('css/jqpagination.css') }}" rel="stylesheet">
+		<!-- scripts -->
+		<script src="{{static_url('js/jquery.jqpagination.js')}}"></script>
+
+
 </head>
 <body>
 {% block body %}{% end %}
@@ -24,13 +30,4 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="{{static_url('js/bootstrap.min.js')}}"></script>
-<script>
-        function play(src) {
-        document.getElementById("myaudio").pause();
-        document.getElementById("myaudio").src = src;
-        document.getElementById("myaudio").play();
-
-    }
-</script>
 </html>

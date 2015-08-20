@@ -5,37 +5,69 @@
 {% block body %}
 {% autoescape None %}
 
+
 <audio id="myaudio">
     <source src="">
 </audio>
-<div class="panel panel-default" style="width: 50%;margin: 0 auto;text-align:center;">
-    <!-- Default panel contents -->
-    <div class="panel-heading">
-        <p>
-            枪顶后脑勺，该摇还得摇!
-        </p>
-    </div>
-    <div class="panel-body">
-        <p>
-            横幅.
-        </p>
-    </div>
+<div id="content" style="width: 50%;margin: 0 auto;text-align:center;">
 
-    <!-- Table -->
-    <table class="table">
-        <thead>
-        <tr>
-            <th>音乐</th>
-            <th>时长</th>
-            <th>人气</th>
-            <th>下载</th>
-            <th></th>
-        </tr>
-        </thead>
-        {% for music in musics %}
-        {{ modules.MusicItem(music) }}
-        {% end %}
-    </table>
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <p>
+                枪顶后脑勺，该摇还得摇!
+            </p>
+        </div>
+        <div class="panel-body">
+            <p>
+                Ladies and Gentlemen, boys and girlses, Welcome to the Ba Na Na DISCO club,
+            </p>
+        </div>
+
+        <!-- Table -->
+        <table class="table">
+            <thead>
+            <tr>
+                <th>音乐</th>
+                <th>时长</th>
+                <th>人气</th>
+                <th>下载</th>
+                <th></th>
+            </tr>
+            </thead>
+            {% for music in musics %}
+            {{ modules.MusicItem(music) }}
+            {% end %}
+        </table>
+    </div>
+    <div class="pagination">
+        <a href="#" class="first" data-action="first">&laquo;</a>
+        <a href="#" class="previous" data-action="previous">&lsaquo;</a>
+        <input type="text" readonly="readonly" data-max-page="{{ max_page }}"/>
+        <a href="#" class="next" data-action="next">&rsaquo;</a>
+        <a href="#" class="last" data-action="last">&raquo;</a>
+    </div>
 </div>
+<script>
+    $(document).ready(function () {
 
+        $('.pagination').jqPagination({
+            link_string: '/?page={page_number}',
+            max_page: {{ max_page }},
+            current_page: {{ page_id }},
+            paged: function (page) {
+                var url = "/" + page;
+                window.location = url;
+            }
+        });
+
+    });
+    function play(src) {
+        document.getElementById("myaudio").pause();
+        document.getElementById("myaudio").src = src;
+        document.getElementById("myaudio").play();
+
+    }
+</script>
 {% end %}
